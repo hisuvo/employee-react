@@ -1,6 +1,7 @@
 import { useState } from "react";
 
-export default function Login() {
+export default function Upload() {
+  document.title = "upload";
   const [success, setSuccess] = useState({});
   const [error, setError] = useState({});
 
@@ -36,7 +37,10 @@ export default function Login() {
   };
 
   return (
-    <div className="my-16 border-2 p-8 max-w-[800px] mx-auto">
+    <div className="border-2 border-blue-400 bg-blue-50 p-8 max-w-[800px] mx-auto">
+      <h2 className="text-2xl font-mono font-light text-center my-4">
+        Upload Info here
+      </h2>
       <form onSubmit={handleForm} className="max-w-[600px] mx-auto">
         <div className="flex gap-4">
           <label className="form-control w-full max-w-xs">
@@ -102,7 +106,11 @@ export default function Login() {
         </div>
 
         <div className="mt-4">
-          <input className="btn w-full" type="submit" value="Submite" />
+          <input
+            className="btn w-full bg-blue-600 hover:bg-blue-500 text-white"
+            type="submit"
+            value="Submite"
+          />
         </div>
       </form>
     </div>
