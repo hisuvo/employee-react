@@ -17,13 +17,16 @@ export default function Update() {
     console.log(name, college, phone, subject);
     const userInfo = { name, college, phone, subject };
 
-    fetch(`http://localhost:5000/employees/${employee._id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    })
+    fetch(
+      `https://employee-server-eight.vercel.app/employees/${employee._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(userInfo),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

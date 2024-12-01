@@ -22,7 +22,7 @@ export default function Upload() {
     console.log(name, college, phone, subject);
     const userInfo = { name, college, phone, subject };
 
-    fetch(`http://localhost:5000/employees`, {
+    fetch(`https://employee-server-eight.vercel.app/employees`, {
       method: "POST",
       headers: {
         "content-type": "application/json",

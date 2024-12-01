@@ -23,7 +23,7 @@ export default function SignIn() {
 
         const singInInfo = { email, lastSingInTime };
         // console.log(singInInfo);
-        fetch(`http://localhost:5000/employeesauth`, {
+        fetch(`https://employee-server-eight.vercel.app/employeesauth`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",

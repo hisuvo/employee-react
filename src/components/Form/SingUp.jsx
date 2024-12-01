@@ -27,7 +27,7 @@ export default function SingUp() {
         const inputValue = { name, phone, email, createTime };
 
         // Save new employees information into the database
-        fetch(`http://localhost:5000/employeesauth`, {
+        fetch(`https://employee-server-eight.vercel.app/employeesauth`, {
           method: "POST",
           headers: {
             "content-type": "application/json",

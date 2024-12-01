@@ -5,7 +5,7 @@ export default function Employee({ employee, employees, setEmployees }) {
 
   const handleRemove = (id) => {
     console.log(id);
-    fetch(`http://localhost:5000/employees/${id}`, {
+    fetch(`https://employee-server-eight.vercel.app/employees/${id}`, {
       method: "DELETE",
     })
       .then((res) => res.json())

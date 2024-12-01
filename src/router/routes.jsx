@@ -25,14 +25,15 @@ const routes = createBrowserRouter([
       {
         path: "employees",
         element: <Employees />,
-        loader: () => fetch(`https://employee-server-tau.vercel.app/employees`),
+        loader: () =>
+          fetch(`https://employee-server-eight.vercel.app/employees`),
       },
       {
         path: "/update/:id",
         element: <Update />,
         loader: ({ params }) =>
           fetch(
-            `https://employee-server-tau.vercel.app/employees/${params.id}`
+            `https://employee-server-eight.vercel.app/employees/${params.id}`
           ),
       },
       {
@@ -47,7 +48,7 @@ const routes = createBrowserRouter([
         path: "/users",
         element: <User />,
         loader: () =>
-          fetch(`https://employee-server-tau.vercel.app/employeesauth`),
+          fetch(`https://employee-server-eight.vercel.app/employeesauth`),
       },
     ],
   },
