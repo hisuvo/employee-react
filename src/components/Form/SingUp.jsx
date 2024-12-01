@@ -5,7 +5,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 export default function SingUp() {
   document.title = "sign up";
-  const { createUser } = useContext(AuthContext);
+  const { setUser, createUser } = useContext(AuthContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -19,8 +19,9 @@ export default function SingUp() {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        setUser(user);
 
-        const createTime = user.metadata.creationTime;
+        const createTime = user?.metadata?.creationTime;
         console.log(createTime);
 
         const inputValue = { name, phone, email, createTime };

@@ -2,6 +2,7 @@ import { data, useLoaderData } from "react-router-dom";
 import { RiDeleteBin5Line } from "react-icons/ri";
 import { FaEdit } from "react-icons/fa";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function User() {
   let number = 0;
@@ -9,16 +10,33 @@ export default function User() {
   const [users, setUsers] = useState(loadingUsers);
 
   const handleRemove = (id) => {
-    console.log(id);
-    fetch(`http://localhost:5000/employeesauth/${id}`, {
-      method: "DELETE",
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      });
-    const remain = users.filter((user) => user._id !== id);
-    setUsers(remain);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        fetch(`http://localhost:5000/employeesauth/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            if (data.deletedCount === 1) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your file has been deleted.",
+                icon: "success",
+              });
+            }
+          });
+        const remain = users.filter((user) => user._id !== id);
+        setUsers(remain);
+      }
+    });
   };
 
   return (

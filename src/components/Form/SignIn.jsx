@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 export default function SignIn() {
   document.title = "sing in";
+  const { logIn } = useContext(AuthContext);
+
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -11,6 +14,30 @@ export default function SignIn() {
     const password = form.password.value;
 
     console.log(email, password);
+
+    // Login Function
+    logIn(email, password)
+      .then((result) => {
+        const employee = result.user;
+        const lastSingInTime = employee?.metadata?.lastSignInTime;
+
+        const singInInfo = { email, lastSingInTime };
+        // console.log(singInInfo);
+        fetch(`http://localhost:5000/employeesauth`, {
+          method: "PATCH",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(singInInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+          });
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className="card bg-blue-50 max-w-[600px] mx-auto p-6 border-2 border-blue-400 shrink-0 ">
